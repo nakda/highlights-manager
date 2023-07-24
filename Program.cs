@@ -11,8 +11,7 @@
         {
             Logger.LogError($"Configuration file {ConfigurationFile} is missing: please download it from GitHub.");
         }
-
-        if(configuration.IsValid())
+        else if(configuration.IsValid())
         {
             // Start monitoring temporary Highlights folder
             var fileWatcher = new FileSystemWatcher(configuration.TemporaryFolder, "*.mp4");
@@ -28,7 +27,7 @@
         }
 
         // Prevent application from being terminated prematurely
-        Logger.LogMessage("At any time, press any key to quit the application.");
+        Logger.LogMessage("At any time, press Enter to quit the application.");
         Console.Read();
     }
 
