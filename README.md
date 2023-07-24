@@ -26,4 +26,64 @@ In addition, this application also offers the possibility to automatically share
 FFMPEG should be installed and added to PATH environment variable if transcoding is expected, and both a NVIDIA GeForce graphics card and NVIDIA GeForce Experience should be ready to use.
 
 # How can I configure this application?
-You just have to look at the "config.toml" file, where everything is explained.
+The following documentation provides details on the various options available in the configuration file. The configuration file uses the TOML format to specify settings related to the temporary and permanent storage of Highlights, transcoding options, Discord sharing, and other preferences.
+
+## Configuration Options
+
+### `temporary_folder` (string)
+
+Specifies the folder path where NVIDIA GeForce Experience saves temporary highlights. The value you need to set this with can be retrieved in the GeForce Experience Highlights settings. If the path contains backslashes, they need to be escaped (e.g., "C:\Temp" becomes "C:\\Temp"). This field cannot be empty.
+
+### `permanent_folder` (string)
+
+Defines the folder path where you want your Highlights to be permanently stored. Similar to `temporary_folder`, you need to escape backslashes if present (e.g., "C:\Temp" becomes "C:\\Temp"). This field cannot be empty.
+
+### `move_highlights` (boolean)
+
+Determines whether the Highlights should be moved from the temporary folder to the permanent folder. If set to `true`, the files will be moved, saving disk space and avoiding unnecessary duplication. However, if set to `false`, the Highlights will be duplicated and thus available in both locations. If you want to preserve native handling of the Highlights through the GeForce Experience UI (e.g., sharing to YouTube), you should set this to `false`.
+
+### `transcode_highlights` (boolean)
+
+Indicates whether the Highlights should be transcoded. Transcoding allows you to trim the videos or reduce their file size. To enable transcoding, you must have FFMPEG installed and added to the PATH environment variable. If set to `true`, the transcoding process will be applied.
+
+### `transcode_trim` (boolean)
+### `transcode_start_time` (string)
+### `transcode_end_time` (string)
+
+If `transcode_highlights` is set to `true`, you can use these options to trim the Highlights during the transcoding process. `transcode_trim` enables or disables trimming, while `transcode_start_time` and `transcode_end_time` specify the start and end times for the trimming. By default, in Hunt: Showdown, the Highlights last 25 seconds with the kill happening at the 20 seconds mark.
+
+### `transcode_size` (integer)
+
+Defines the approximate target file size (in MB) for the transcoded Highlights. Lowering this value will result in reduced video quality. Set `transcode_size` to 0 if you don't want to enforce any file size limitation during transcoding.
+
+### `preserve_original` (boolean)
+### `preserve_transcoded` (boolean)
+
+After transcoding, these options allow you to decide whether to preserve the original Highlights, the transcoded version, both, or neither. If `preserve_original` is set to `true`, the original Highlights will be kept. Similarly, if `preserve_transcoded` is set to `true`, the transcoded versions will be retained.
+
+### `discord_share` (boolean)
+### `discord_webhook` (string)
+### `discord_username` (string)
+### `discord_avatar` (string)
+
+These options are related to sharing Highlights to Discord. If `discord_share` is set to `true`, the application will automatically share Highlights to Discord. The Discord webhook's URL should be provided in `discord_webhook`. You can set `discord_username` and `discord_avatar` to specify a default username and avatar, respectively, when uploading to the Discord channel. The avatar must be a publicly accessible URL to an image. Note that if you are not a Nitro-users, you will have to set `transcode_size` to `25` to comply with Discord upload restrictions.
+
+## Example Configuration
+
+This configuration will automatically move captured Highlights to the `permanent_folder`, transcode the Highlight to make sure it fits Discord upload restrictions for non-Nitro users (25 MB), and trim the Highlight to only preserve a specific segment. Afterwards, it will delete the transcoded version and only preserve the original (untrimmed).
+
+```toml
+temporary_folder = "C:\\Temp\\GeForceHighlights"
+permanent_folder = "C:\\Highlights\\Saved"
+move_highlights = true
+transcode_highlights = true
+transcode_trim = true
+transcode_start_time = "00:00:15"
+transcode_end_time = "00:00:23"
+transcode_size = 25
+preserve_original = true
+preserve_transcoded = false
+discord_share = false
+discord_webhook = "https://discord.com/api/webhooks/your-webhook-url"
+discord_username = "GeForceBot"
+discord_avatar = "https://example.com/geforcebot-avatar.png"
