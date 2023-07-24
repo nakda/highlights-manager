@@ -70,7 +70,7 @@ These options are related to sharing Highlights to Discord. If `discord_share` i
 
 ## Example Configuration
 
-This configuration will automatically move captured Highlights to the `permanent_folder`, transcode the Highlight to make sure it fits Discord upload restrictions for non-Nitro users (25 MB), and trim the Highlight to only preserve a specific segment. Afterwards, it will delete the transcoded version and only preserve the original (untrimmed).
+This configuration will automatically move captured Highlights to the `permanent_folder`, transcode the Highlight to make sure it fits Discord upload restrictions for non-Nitro users (25 MB) and trim the Highlight to only preserve a specific segment, then share it on the specified Discord channel. Afterwards, it will delete the transcoded version and only preserve the original (untrimmed).
 
 ```toml
 temporary_folder = "C:\\Temp\\GeForceHighlights"
@@ -83,7 +83,7 @@ transcode_end_time = "00:00:23"
 transcode_size = 25
 preserve_original = true
 preserve_transcoded = false
-discord_share = false
+discord_share = true
 discord_webhook = "https://discord.com/api/webhooks/your-webhook-url"
 discord_username = "GeForceBot"
 discord_avatar = "https://example.com/geforcebot-avatar.png"

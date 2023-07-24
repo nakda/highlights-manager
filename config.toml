@@ -2,11 +2,11 @@ temporary_folder = ""
 permanent_folder = ""
 move_highlights = false
 
-transcode_highlights = true
+transcode_highlights = false
 transcode_trim = false
 transcode_start_time = "00:00:00"
 transcode_end_time = "00:00:25"
-transcode_size = 25
+transcode_size = 0
 
 preserve_original = true
 preserve_transcoded = true
