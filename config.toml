@@ -1,35 +1,17 @@
-# Folder where NVIDIA GeForce Experience is saving the temporary highlights; you can find this information in the Highlights settings ("\" needs to be escaped so "C:\Temp" becomes "C:\\Temp")
 temporary_folder = ""
-
-# Folder where you want your Highlights to be permanently moved ("\" needs to be escaped so "C:\Temp" becomes "C:\\Temp")
 permanent_folder = ""
-
-# Decide if you want the Highlights to be moved from the temporary folder, otherwise they will be duplicated. Moving instead of duplicating will save some disk space and unecessary writing, but it will prevent you from handling the Highlights natively (share to Youtube, etc).
 move_highlights = false
 
-# Do you want to transcode the Highlights to trim them or reduce their file size (requires FFMPEG to be installed and added to PATH environment variable).
 transcode_highlights = true
-
-# You can decide to trim the Highlights along the transcoding process, focusing on the important segments and increasing the video quality (note: Hunt: Showdown Highlights last 25 seconds, and the kill happens at the 20 seconds mark).
 transcode_trim = true
 transcode_start_time = "00:00:00"
 transcode_end_time = "00:00:25"
-
-# Approximate file size (in MB) that will be targeted during transcoding (note: a lower size will result in a lower video quality). Set it to 0 if you don't want to enforce any file size.
 transcode_size = 25
 
-# Once the file has been transcoded, do you want to preserve the original Highlights, the transcoded version, both or none.
 preserve_original = true
 preserve_transcoded = true
 
-# Should the Highlights be automatically shared to Discord (free Discord users can only upload files up to 25MB, so transcoding Highlights might be required)
 discord_share = false
-
-# Webhook's URL that you can retrieve from the Discord server settings
 discord_webhook = ""
-
-# Webhook's default username will be used if you don't specify one (if multiple people is using this application to upload on the same Discord channel, this setting helps identifying them).
 discord_username = ""
-
-#  Webhook's default avatar will be used if you don't specify one (it needs to be a publicly accessible URL to an image).
 discord_avatar = ""
